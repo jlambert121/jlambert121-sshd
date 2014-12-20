@@ -6,8 +6,8 @@
 #   include sshd
 #
 class sshd (
-  $ldap_uri         = 'ldap://ldap.example.com',
-  $ldap_base        = 'dc=example,dc=com',
+  $ldap_uri,
+  $ldap_base,
   $ldap_tls_cacert  = '/etc/pki/tls/certs/ca-bundle.crt',
 ){
 
