@@ -2,6 +2,7 @@
 language: ruby
 bundler_args: --without system_tests
 script: "bundle exec rake validate && bundle exec rake test SPEC_OPTS='--format documentation'"
+sudo: false
 matrix:
   fast_finish: true
   include:
@@ -57,6 +58,6 @@ notifications:
   email: false
   hipchat:
     rooms:
-      - secure: 
+      - secure: "Ca4tYN7ObME9m43G/tHMBwyEJwFp+1eBiLAzAoSiqvVBHewpJ9J3CuEb2Um+VYwQjL5ohbjUeUHnYaVEyonXwgXfcniGbLYLmM+FVbSbzV/BGGOQBdJZY2TSTVMbZPhepPgANbrItrKTBx2CKe46PcubFx1MIAzrplSR6dJG+/A="
   on_success: always
   on_failure: always
