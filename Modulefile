@@ -1,0 +1,8 @@
+name 'evenup-sshd'
+version '1.0.1'
+author 'Justin Lambert <jlambert@letsevenup.com>'
+license 'Private'
+summary 'Manages sshd.'
+description 'Installs, configures, and runs the sshd service'
+source 'http://git.ineu.us/'
+project_page 'http://www.letsevenup.com'
