@@ -5,4 +5,8 @@
     delete: true
   spec/acceptance/nodesets/centos-70-x64.yml:
     delete: true
+  spec/acceptance/nodesets/ubuntu-server-1204-x64.yml:
+    delete: true
+  spec/acceptance/nodesets/ubuntu-server-1404-x64.yml:
+    delete: true
 
