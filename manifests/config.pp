@@ -4,6 +4,10 @@ class sshd::config (
   $ldap_tls_cacert = $::sshd::ldap_tls_cacert,
 ){
 
+  if $caller_module_name != $module_name {
+    fail("Use of private class ${name} by ${caller_module_name}")
+  }
+
   file { '/etc/ssh/ldap.conf':
     ensure  => file,
     owner   => 'root',
