@@ -1,0 +1,16 @@
+{
+  "name": "evenup-sshd",
+  "version": "0.1.0",
+  "author": "Justin Lambert <jlambert@letsevenup.com>",
+  "summary": "Manages sshd with LDAP authentication on RHEL-based machines",
+  "license": "Apache 2.0",
+  "source": "https://github.com/evenup/evenup-sshd",
+  "project_page": "https://github.com/evenup/evenup-sshd",
+  "issues_url": "https://github.com/evenup/evenup-sshd/issues",
+  "tags": ["ssh", "sshd", "ldap"],
+  "operatingsystem_support": [
+    { "operatingsystem": "RedHat", "operatingsystemrelease": [ "6", "7" ] },
+    { "operatingsystem": "CentOS", "operatingsystemrelease": [ "6", "7" ] }
+  ],
+  "dependencies": []
+}
