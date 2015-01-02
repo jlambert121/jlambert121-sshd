@@ -1,4 +1,7 @@
 # Managed by puppet - do not modify
 
-BASE	      <%= scope.lookupvar('ldap_base') %>
-URI 	      <%= scope.lookupvar('ldap_uri') %>
+BASE	      <%= @ldap_base %>
+URI 	      <%= @ldap_uri %>
+<% if @ldap_tls_cacert -%>
+TLS_CACERT  <%= @ldap_tls_cacert %>
+<% end -%>

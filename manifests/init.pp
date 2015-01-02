@@ -8,7 +8,7 @@
 class sshd (
   $ldap_uri,
   $ldap_base,
-  $ldap_tls_cacert  = '/etc/pki/tls/certs/ca-bundle.crt',
+  $ldap_tls_cacert = undef,
 ){
 
   class { 'sshd::install': } ->

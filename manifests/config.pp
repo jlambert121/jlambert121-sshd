@@ -8,6 +8,20 @@ class sshd::config (
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
+  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+    selboolean { 'authlogin_nsswitch_use_ldap':
+      persistent => true,
+      value      => 'on',
+    }
+  }
+
+  # OpenSSH merged RH's patch as ov version 6.2
+  if versioncmp('6.2', $::opensshversion) < 1 {
+    $auth_user_cmd = 'AuthorizedKeysCommandUser'
+  } else {
+    $auth_user_cmd = 'AuthorizedKeysCommandRunAs'
+  }
+
   file { '/etc/ssh/ldap.conf':
     ensure  => file,
     owner   => 'root',
@@ -23,7 +37,7 @@ class sshd::config (
     group   => 'root',
     require => Package['openssh-server'],
     notify  => Service[ 'sshd' ],
-    content => template('sshd/sshd_config'),
+    content => template('sshd/sshd_config.erb'),
   }
 
   file { '/etc/pam.d/sshd':
@@ -32,6 +46,6 @@ class sshd::config (
     group  => 'root',
     mode   => '0444',
     source => 'puppet:///modules/sshd/sshd',
-
   }
+
 }
