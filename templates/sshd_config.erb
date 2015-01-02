@@ -130,4 +130,4 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 
 # Look up users' public key in LDAP
 AuthorizedKeysCommand /usr/libexec/openssh/ssh-ldap-wrapper
-AuthorizedKeysCommandRunAs nobody
+<%= @auth_user_cmd -%> nobody
