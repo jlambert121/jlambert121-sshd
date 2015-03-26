@@ -1,3 +1,8 @@
+# Class sshd::config
+#
+# Manages ssh configuration
+#
+#
 class sshd::config (
   $ldap_uri        = $::sshd::ldap_uri,
   $ldap_base       = $::sshd::ldap_base,

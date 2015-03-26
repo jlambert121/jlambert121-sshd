@@ -11,8 +11,8 @@ class sshd (
   $ldap_tls_cacert = undef,
 ){
 
-  class { 'sshd::install': } ->
-  class { 'sshd::config': } ~>
-  class { 'sshd::service': }
+  class { '::sshd::install': } ->
+  class { '::sshd::config': } ~>
+  class { '::sshd::service': }
 
 }

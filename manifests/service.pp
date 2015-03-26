@@ -1,3 +1,8 @@
+# Class sshd::service
+#
+# Manages sshd service
+#
+#
 class sshd::service {
 
   if $caller_module_name != $module_name {

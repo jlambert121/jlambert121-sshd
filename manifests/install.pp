@@ -1,3 +1,8 @@
+# Class sshd::install
+#
+# Manages sshd packages
+#
+#
 class sshd::install (
 ){
 
