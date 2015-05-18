@@ -12,4 +12,4 @@ session    required     pam_loginuid.so
 session    required     pam_selinux.so open env_params
 session    optional     pam_keyinit.so force revoke
 session    include      password-auth
-session    required     pam_mkhomedir.so umask=0022 skel=/etc/skel/
+session    required     pam_oddjob_mkhomedir.so umask=0022 skel=/etc/skel/
