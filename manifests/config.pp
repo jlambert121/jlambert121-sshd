@@ -27,6 +27,13 @@ class sshd::config (
     $auth_user_cmd = 'AuthorizedKeysCommandRunAs'
   }
 
+  # Support oddjob on RH>= 7 for selinux
+  if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
+    $_pam_source = 'puppet:///modules/sshd/sshd.oddjob'
+  } else {
+    $_pam_source = 'puppet:///modules/sshd/sshd'
+  }
+
   file { '/etc/ssh/ldap.conf':
     ensure  => file,
     owner   => 'root',
@@ -50,7 +57,7 @@ class sshd::config (
     owner  => 'root',
     group  => 'root',
     mode   => '0444',
-    source => 'puppet:///modules/sshd/sshd',
+    source => $_pam_source,
   }
 
 }
