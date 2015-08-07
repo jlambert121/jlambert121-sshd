@@ -13,7 +13,7 @@ class sshd::config (
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' {
+  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' and $::selinux {
     selboolean { 'authlogin_nsswitch_use_ldap':
       persistent => true,
       value      => 'on',
