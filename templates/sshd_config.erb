@@ -40,8 +40,6 @@ Ciphers blowfish-cbc,aes256-cbc,aes256-ctr
 #RSAAuthentication yes
 #PubkeyAuthentication yes
 #AuthorizedKeysFile	.ssh/authorized_keys
-#AuthorizedKeysCommand none
-#AuthorizedKeysCommandRunAs nobody
 
 # For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
 #RhostsRSAAuthentication no
@@ -69,9 +67,7 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
-#GSSAPIAuthentication no
 GSSAPIAuthentication yes
-#GSSAPICleanupCredentials yes
 GSSAPICleanupCredentials yes
 #GSSAPIStrictAcceptorCheck yes
 #GSSAPIKeyExchange no
@@ -85,7 +81,6 @@ GSSAPICleanupCredentials yes
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
-#UsePAM no
 UsePAM yes
 
 # Accept locale-related environment variables
@@ -105,6 +100,7 @@ X11Forwarding no
 #TCPKeepAlive yes
 #UseLogin no
 #UsePrivilegeSeparation yes
+UsePrivilegeSeparation sandbox
 PermitUserEnvironment no
 #Compression delayed
 #ClientAliveInterval 0
@@ -120,7 +116,7 @@ UseDNS no
 #Banner none
 
 # override default of no subsystems
-Subsystem	sftp	/usr/libexec/openssh/sftp-server
+Subsystem sftp /usr/libexec/openssh/sftp-server
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
@@ -129,5 +125,9 @@ Subsystem	sftp	/usr/libexec/openssh/sftp-server
 #	ForceCommand cvs server
 
 # Look up users' public key in LDAP
+<% if @provider == 'ldap' -%>
 AuthorizedKeysCommand /usr/libexec/openssh/ssh-ldap-wrapper
+<% elsif @provider == 'sss' -%>
+AuthorizedKeysCommand /usr/bin/sss_ssh_authorizedkeys
+<% end -%>
 <%= @auth_user_cmd -%> nobody

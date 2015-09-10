@@ -6,10 +6,16 @@
 #   include sshd
 #
 class sshd (
-  $ldap_uri,
-  $ldap_base,
+  $provider        = 'ldap',
+  $ldap_uri        = undef,
+  $ldap_base       = undef,
   $ldap_tls_cacert = undef,
 ){
+
+  if $provider == 'ldap' and (!$ldap_uri or !$ldap_base) {
+    fail('sshd: ldap_uri and ldap_base are required when provider = ldap')
+  }
+
 
   class { '::sshd::install': } ->
   class { '::sshd::config': } ~>
