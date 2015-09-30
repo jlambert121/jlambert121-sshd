@@ -1,3 +1,5 @@
+20150807 - v0.2.2
+  Only set selbool if selinux is enabled
 20150517 - v0.2.1
   Add oddjob pam changaes
 20150517 - v0.2.0

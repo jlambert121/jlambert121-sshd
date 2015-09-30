@@ -6,6 +6,7 @@
 class sshd::config (
   $ldap_uri        = $::sshd::ldap_uri,
   $ldap_base       = $::sshd::ldap_base,
+  $provider        = $::sshd::provider,
   $ldap_tls_cacert = $::sshd::ldap_tls_cacert,
 ){
 
@@ -34,12 +35,14 @@ class sshd::config (
     $_pam_source = 'puppet:///modules/sshd/sshd'
   }
 
-  file { '/etc/ssh/ldap.conf':
-    ensure  => file,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0444',
-    content => template('sshd/ldap.conf.erb'),
+  if $provider == 'ldap' {
+    file { '/etc/ssh/ldap.conf':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0444',
+      content => template('sshd/ldap.conf.erb'),
+    }
   }
 
   file { '/etc/ssh/sshd_config':

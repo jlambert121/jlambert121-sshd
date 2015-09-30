@@ -1,6 +1,6 @@
 {
   "name": "evenup-sshd",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "author": "Justin Lambert <jlambert@letsevenup.com>",
   "summary": "Manages sshd with LDAP authentication on RHEL-based machines",
   "license": "Apache-2.0",
