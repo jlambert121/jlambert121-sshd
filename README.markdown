@@ -12,7 +12,7 @@
 
 ## Overview
 
-Puppet module to manage SSHD configuration on RHEL-based systems implementing LDAP authentication.
+Puppet module to manage SSHD configuration on RHEL-based systems implementing LDAP or FreeIPA authentication.
 
 ## Module Description
 
@@ -35,6 +35,14 @@ The sshd module is extremely simple to use (you will need to have a LDAP server 
     class { 'sshd':
       $ldap_uri        = 'ldap://ldap1.yourcompany.com, ldap://ldap2.yourcompany.com'
       $ldap_base       = 'dc=yourcompany,dc=com',
+    }
+```
+
+To use this module with FreeIPA
+
+```
+    class { 'sshd':
+      $provider = 'sss',
     }
 ```
 

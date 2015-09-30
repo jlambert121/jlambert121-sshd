@@ -16,7 +16,6 @@ class sshd (
     fail('sshd: ldap_uri and ldap_base are required when provider = ldap')
   }
 
-
   class { '::sshd::install': } ->
   class { '::sshd::config': } ~>
   class { '::sshd::service': }
