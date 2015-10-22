@@ -1,3 +1,5 @@
+20151022 - v0.3.1
+  Only install openssh-ldap package when provider=ldap
 20150930 - v0.3.0
   Add support for IPA provider
 20150807 - v0.2.2
