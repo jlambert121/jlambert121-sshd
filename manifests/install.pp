@@ -15,8 +15,10 @@ class sshd::install (
     notify => Class['sshd::service'],
   }
 
-  package { 'openssh-ldap':
-    ensure => 'latest',
+  if $::sshd::provider == 'ldap' {
+    package { 'openssh-ldap':
+      ensure => 'latest',
+    }
   }
 
 }
