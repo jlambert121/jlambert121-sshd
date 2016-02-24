@@ -4,6 +4,7 @@
 #
 #
 class sshd::config (
+  $port            = $::sshd::port,
   $ldap_uri        = $::sshd::ldap_uri,
   $ldap_base       = $::sshd::ldap_base,
   $provider        = $::sshd::provider,
@@ -14,13 +15,6 @@ class sshd::config (
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' and $::selinux {
-    selboolean { 'authlogin_nsswitch_use_ldap':
-      persistent => true,
-      value      => 'on',
-    }
-  }
-
   # OpenSSH merged RH's patch as ov version 6.2
   if versioncmp('6.2', $::opensshversion) < 1 {
     $auth_user_cmd = 'AuthorizedKeysCommandUser'
@@ -29,19 +23,34 @@ class sshd::config (
   }
 
   # Support oddjob on RH>= 7 for selinux
-  if versioncmp($::operatingsystemrelease, '7.0') >= 0 {
-    $_pam_source = 'puppet:///modules/sshd/sshd.oddjob'
-  } else {
+  if versioncmp($::operatingsystemmajrelease, '7.0') >= 0 {
     $_pam_source = 'puppet:///modules/sshd/sshd'
+  } else {
+    $_pam_source = 'puppet:///modules/sshd/sshd.rh6'
   }
 
   if $provider == 'ldap' {
+    if $::osfamily == 'RedHat' and $::operatingsystemmajrelease == '7' and $::selinux {
+      selboolean { 'authlogin_nsswitch_use_ldap':
+        persistent => true,
+        value      => 'on',
+      }
+    }
+
     file { '/etc/ssh/ldap.conf':
       ensure  => file,
       owner   => 'root',
       group   => 'root',
       mode    => '0444',
       content => template('sshd/ldap.conf.erb'),
+    }
+  }
+
+  if $::selinux {
+    selinux::port { 'allow-ssh-port':
+      context  => 'ssh_port_t',
+      protocol => 'tcp',
+      port     => $port,
     }
   }
 

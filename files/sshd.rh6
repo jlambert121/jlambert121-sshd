@@ -2,7 +2,6 @@
 # Managed by puppet - do not modify
 auth	   required	pam_sepermit.so
 auth       include      password-auth
-auth       include      postlogin
 account    required     pam_nologin.so
 account    include      password-auth
 password   include      password-auth
@@ -13,5 +12,4 @@ session    required     pam_loginuid.so
 session    required     pam_selinux.so open env_params
 session    optional     pam_keyinit.so force revoke
 session    include      password-auth
-session    include      postlogin
-session    required     pam_oddjob_mkhomedir.so umask=0022 skel=/etc/skel/
+session    required     pam_mkhomedir.so umask=0022 skel=/etc/skel/

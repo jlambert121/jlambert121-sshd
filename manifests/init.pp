@@ -6,6 +6,7 @@
 #   include sshd
 #
 class sshd (
+  $port            = 22,
   $provider        = 'ldap',
   $ldap_uri        = undef,
   $ldap_base       = undef,
