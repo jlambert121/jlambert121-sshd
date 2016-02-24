@@ -1,4 +1,8 @@
 fixtures:
+  forge_modules:
+    stdlib: 'puppetlabs/stdlib'
+  repositories:
+    selinux: 'https://github.com/jfryman/puppet-selinux'
   symlinks:
     sshd: "#{source_dir}"
 

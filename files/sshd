@@ -1,7 +1,10 @@
 #%PAM-1.0
 # Managed by puppet - do not modify
-auth	   required	pam_sepermit.so
-auth       include      password-auth
+auth	     required     pam_sepermit.so
+auth       substack     password-auth
+auth       include      postlogin
+# Used with polkit to reauthorize users in remote sessions
+-auth      optional     pam_reauthorize.so prepare
 account    required     pam_nologin.so
 account    include      password-auth
 password   include      password-auth
@@ -10,6 +13,9 @@ session    required     pam_selinux.so close
 session    required     pam_loginuid.so
 # pam_selinux.so open should only be followed by sessions to be executed in the user context
 session    required     pam_selinux.so open env_params
+session    required     pam_namespace.so
 session    optional     pam_keyinit.so force revoke
 session    include      password-auth
-session    required     pam_mkhomedir.so umask=0022 skel=/etc/skel/
+session    include      postlogin
+# Used with polkit to reauthorize users in remote sessions
+-session   optional     pam_reauthorize.so prepare
