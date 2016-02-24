@@ -61,10 +61,10 @@ Only tested on CentOS/RHEL
 
 ## Development
 
-Improvements and bug fixes are greatly appreciated.  See the [contributing guide](https://github.com/evenup/evenup-sshd/CONTRIBUTING.md) for
+Improvements and bug fixes are greatly appreciated.  See the [contributing guide](https://github.com/jlambert121/jlambert121-sshd/CONTRIBUTING.md) for
 information on adding and validating tests for PRs.
 
 ## Changelog / Contributors
 
-[Changelog](https://github.com/evenup/evenup-sshd/CHANGELOG)
-[Contributors](https://github.com/evenup/evenup-sshd/graphs/contributors)
+[Changelog](https://github.com/jlambert121/jlambert121-sshd/CHANGELOG)
+[Contributors](https://github.com/jlambert121/jlambert121-sshd/graphs/contributors)

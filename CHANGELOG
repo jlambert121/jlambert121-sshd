@@ -1,3 +1,4 @@
+  Rename to jlambert121/sshd
 20151022 - v0.3.1
   Only install openssh-ldap package when provider=ldap
 20150930 - v0.3.0
@@ -10,4 +11,3 @@
   Add support for RH's oddjob
 20150105 - v0.1.0
   Initial public release
-
