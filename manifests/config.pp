@@ -23,7 +23,7 @@ class sshd::config (
   }
 
   # Support oddjob on RH>= 7 for selinux
-  if versioncmp($::operatingsystemmajrelease, '7.0') >= 0 {
+  if versioncmp($::operatingsystemmajrelease, '7') >= 0 {
     $_pam_source = 'puppet:///modules/sshd/sshd'
   } else {
     $_pam_source = 'puppet:///modules/sshd/sshd.rh6'
