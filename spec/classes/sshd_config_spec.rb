@@ -6,11 +6,12 @@ describe 'sshd', :type => :class do
 
   context 'RH7' do
     it do
-        should contain_file('/etc/ssh/sshd_config').with(
-          :mode    =>'0400',
-          :content => /AuthorizedKeysCommandUser nobody/
-        )
-      end
+      should contain_file('/etc/ssh/sshd_config').with(
+        :mode    =>'0400',
+        :content => /AuthorizedKeysCommandUser nobody/
+      )
+    end
+    it { should contain_file('/etc/pam.d/sshd').with(:source => 'puppet:///modules/sshd/sshd' ) }
   end
 
   context 'RH6' do
@@ -21,6 +22,7 @@ describe 'sshd', :type => :class do
         :content => /AuthorizedKeysCommandRunAs nobody/
       )
     end
+    it { should contain_file('/etc/pam.d/sshd').with(:source => 'puppet:///modules/sshd/sshd.rh6' ) }
   end
 
   context 'ldap provider' do
