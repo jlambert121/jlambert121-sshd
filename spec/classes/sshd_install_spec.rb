@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'sshd' do
-  let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => true } }
+  let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => 'true' } }
 
   describe 'provider ldap' do
     let(:params) { { :provider => 'ldap', :ldap_uri => 'ldap://ldap.example.com', :ldap_base => 'ou=example,ou=com' } }

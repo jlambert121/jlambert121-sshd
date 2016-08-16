@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'sshd', :type => :class do
-  let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => true } }
+  let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => 'true' } }
   let(:params) { { :ldap_uri => 'ldap://ldap.example.com', :ldap_base => 'ou=example,ou=com' } }
 
   context 'RH7' do
@@ -15,7 +15,7 @@ describe 'sshd', :type => :class do
   end
 
   context 'RH6' do
-    let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '6', :opensshversion => '5.3p1', :operatingsystem => 'CentOS', :selinux => true } }
+    let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '6', :opensshversion => '5.3p1', :operatingsystem => 'CentOS', :selinux => 'true' } }
     it do
       should contain_file('/etc/ssh/sshd_config').with(
         :mode    =>'0400',
@@ -31,7 +31,7 @@ describe 'sshd', :type => :class do
     it { should contain_selboolean('authlogin_nsswitch_use_ldap').with(:value => 'on') }
 
     context 'without selinux' do
-      let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => false } }
+      let(:facts) { { :osfamily => 'Redhat', :operatingsystemmajrelease => '7', :opensshversion => '6.4p1', :operatingsystem => 'CentOS', :selinux => 'false' } }
       it { should_not contain_selboolean('authlogin_nsswitch_use_ldap').with(:value => 'on') }
     end
 
