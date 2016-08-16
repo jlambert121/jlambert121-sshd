@@ -14,5 +14,6 @@
   ],
   "dependencies": [
     { "name": "jfryman/selinux", "version_requirements": ">=0.2.6 <1.0.0" }
+    { "name": "puppetlabs/stdlib", "version_requirements": ">=2.2.1 <5.0.0" }
   ]
 }
